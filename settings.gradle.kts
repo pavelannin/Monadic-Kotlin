@@ -28,6 +28,9 @@ dependencyResolutionManagement {
 rootProject.name = "Monadic"
 
 include(
-    ":core:function",
-    ":monads:either",
+    ":bom",
+    ":either-core",
+    ":function-core",
+    ":lce-core",
+    ":lce-either",
 )

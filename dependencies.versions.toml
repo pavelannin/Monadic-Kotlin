@@ -1,12 +1,14 @@
 [versions]
-android-gradle-plugin = "8.3.1"
-kotlin-language = "1.9.23"
-kotlin-coroutines = "1.8.0"
+android-gradle-plugin = "8.7.1"
+kotlin-language = "2.0.21"
+kotlin-coroutines = "1.9.0"
+kotlin-serialization = "1.7.3"
 
 [libraries]
 kotlin-std-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin-language" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-language" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
+kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlin-serialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -15,4 +17,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-la
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-language" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-language" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin-language" }
-maven-publish = { id ="com.vanniktech.maven.publish", version = "0.28.0" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-language" }
+maven-publish = { id ="com.vanniktech.maven.publish", version = "0.30.0" }
