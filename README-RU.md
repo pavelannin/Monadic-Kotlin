@@ -71,3 +71,21 @@ implementation("io.github.pavelannin:monadic-lce-core")
 ```gradle
 implementation("io.github.pavelannin:monadic-lce-either")
 ```
+
+## Optional
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-core?label=monadic-optional-core)
+
+Монада `Optinal` - это функциональная конструкция, используемая для значения, которое может быть `null`.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-core")
+```
+
+### Optional - Either (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-either?label=monadic-optional-either)
+
+Набор утилит расширяющие возможности `Optional` и `Either`.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-either")
+```

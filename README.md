@@ -71,3 +71,21 @@ A set of utilities that extend the capabilities of `LCE` and `Either'.
 ```gradle
 implementation("io.github.pavelannin:monadic-lce-either")
 ```
+
+## Optional
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-core?label=monadic-optional-core)
+
+The `Optinal` monad is a functional construct used for a value that can be `null'.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-core")
+```
+
+### Optional - Either (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-either?label=monadic-optional-either)
+
+A set of utilities that extend the capabilities of `Optional` and `Either'.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-either")
+```
