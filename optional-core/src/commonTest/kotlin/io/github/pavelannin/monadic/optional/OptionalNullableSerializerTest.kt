@@ -1,8 +1,6 @@
 package io.github.pavelannin.monadic.optional
 
 import io.github.pavelannin.monadic.optional.serialization.OptionalNullableSerializer
-import io.github.pavelannin.monadic.optional.serialization.OptionalSerializer
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.nullable
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json

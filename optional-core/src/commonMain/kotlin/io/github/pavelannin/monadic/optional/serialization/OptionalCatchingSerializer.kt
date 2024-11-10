@@ -3,10 +3,13 @@ package io.github.pavelannin.monadic.optional.serialization
 import io.github.pavelannin.monadic.optional.Optional
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.nullable
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+
+public typealias OptionalCatching<T> = @Serializable(OptionalCatchingSerializer::class) Optional<T>
 
 @OptIn(ExperimentalSerializationApi::class)
 public class OptionalCatchingSerializer<Value>(

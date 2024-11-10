@@ -1,5 +1,6 @@
 package io.github.pavelannin.monadic.optional
 
+import io.github.pavelannin.monadic.optional.serialization.OptionalCatching
 import io.github.pavelannin.monadic.optional.serialization.OptionalCatchingSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
@@ -9,8 +10,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals
-
-private typealias SerializableCatchingOptional<T> = @Serializable(OptionalCatchingSerializer::class) Optional<T>
 
 class OptionalCatchingSerializerTest {
     private val json = Json {
@@ -51,7 +50,7 @@ class OptionalCatchingSerializerTest {
     @Test
     fun jsonSome() {
         @Serializable
-        data class ObjectModel(val field: SerializableCatchingOptional<String>)
+        data class ObjectModel(val field: OptionalCatching<String>)
 
         val objectModel = ObjectModel(Optional.Some("foo"))
         val jsonString = json.encodeToString(objectModel)
@@ -64,7 +63,7 @@ class OptionalCatchingSerializerTest {
     @Test
     fun jsonSomeNullable() {
         @Serializable
-        data class ObjectModel(val field: SerializableCatchingOptional<String?>)
+        data class ObjectModel(val field: OptionalCatching<String?>)
 
         val objectModel = ObjectModel(Optional.Some(null))
         val jsonString = json.encodeToString(objectModel)
@@ -77,7 +76,7 @@ class OptionalCatchingSerializerTest {
     @Test
     fun jsonNone() {
         @Serializable
-        data class ObjectModel(val field: SerializableCatchingOptional<String>)
+        data class ObjectModel(val field: OptionalCatching<String>)
 
         val objectModel = ObjectModel(Optional.None)
         val jsonString = json.encodeToString(objectModel)

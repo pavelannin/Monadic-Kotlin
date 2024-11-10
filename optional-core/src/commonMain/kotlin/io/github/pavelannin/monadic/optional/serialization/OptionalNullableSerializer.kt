@@ -3,6 +3,7 @@ package io.github.pavelannin.monadic.optional.serialization
 import io.github.pavelannin.monadic.optional.Optional
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.element
@@ -11,6 +12,8 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
 import kotlinx.serialization.encoding.encodeStructure
+
+public typealias OptionalNullable<T> = @Serializable(OptionalNullableSerializer::class) Optional<T>
 
 @OptIn(ExperimentalSerializationApi::class)
 public class OptionalNullableSerializer<Value>(
