@@ -33,4 +33,6 @@ include(
     ":function-core",
     ":lce-core",
     ":lce-either",
+    ":optional-core",
+    ":optional-either",
 )
