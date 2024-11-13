@@ -17,7 +17,7 @@ import io.github.pavelannin.monadic.either.Either
  */
 public operator fun <Left, Right> LCE.Companion.invoke(
     either: Either<Left, Right>,
-): LCE<*, Right, Left> = either.fold(
+): LCE<Nothing, Right, Left> = either.fold(
     leftTransform = { left -> LCE.Error(left) },
     rightTransform = { right -> LCE.Content(right) },
 )
@@ -35,4 +35,4 @@ public operator fun <Left, Right> LCE.Companion.invoke(
  * Either.Right(1).toLCE() // Result: LCE.Content(1)
  * ```
  */
-public fun <Left, Right> Either<Left, Right>.toLCE(): LCE<*, Right, Left> = LCE(either = this)
+public fun <Left, Right> Either<Left, Right>.toLCE(): LCE<Nothing, Right, Left> = LCE(either = this)
