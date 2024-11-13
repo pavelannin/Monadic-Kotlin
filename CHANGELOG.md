@@ -1,2 +1,4 @@
-# v0.1.0
-First public version
+# NEXT
+
+## LCE-Core
+- added constructors for the Unit type

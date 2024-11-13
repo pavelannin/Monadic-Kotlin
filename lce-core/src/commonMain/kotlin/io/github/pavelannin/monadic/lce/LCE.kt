@@ -39,9 +39,21 @@ import kotlin.contracts.contract
  */
 @Serializable(LCESerializer::class)
 public sealed class LCE<out Loading, out Content, out Error> {
-    public data class Loading<T>(val loading: T) : LCE<T, Nothing, Nothing>()
-    public data class Content<T>(val content: T) : LCE<Nothing, T, Nothing>()
-    public data class Error<T>(val error: T) : LCE<Nothing, Nothing, T>()
+    public data class Loading<T>(val loading: T) : LCE<T, Nothing, Nothing>() {
+        public companion object {
+            public operator fun invoke(): Loading<Unit> = Loading(Unit)
+        }
+    }
+    public data class Content<T>(val content: T) : LCE<Nothing, T, Nothing>() {
+        public companion object {
+            public operator fun invoke(): Content<Unit> = Content(Unit)
+        }
+    }
+    public data class Error<T>(val error: T) : LCE<Nothing, Nothing, T>() {
+        public companion object {
+            public operator fun invoke(): Error<Unit> = Error(Unit)
+        }
+    }
 
     /**
      * ###### EN:
