@@ -51,8 +51,8 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             compileOnly(deps.kotlin.serialization.core)
-            api("io.github.pavelannin:monadic-lce-core:0.1.0")
-            api("io.github.pavelannin:monadic-either-core:0.3.3")
+            api(project(":lce-core"))
+            api(project(":either-core"))
         }
         commonTest.dependencies {
             implementation(deps.kotlin.test)
