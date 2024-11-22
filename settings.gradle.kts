@@ -31,6 +31,7 @@ include(
     ":bom",
     ":either-core",
     ":function-core",
+    ":identifiable-core",
     ":lce-core",
     ":lce-either",
     ":optional-core",

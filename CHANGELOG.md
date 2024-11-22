@@ -3,6 +3,8 @@
 - added public modifiers for fields
 - added constructors for the Unit type
 - added lift's functions with suspend modifications
+## :identifiable-core
+- first version
 
 # v2024.11.13
 ## :lce-core (v0.2.0)

@@ -50,6 +50,16 @@ Utilities for functions in a functional style: composition, currying, etc.
 implementation("io.github.pavelannin:monadic-function-core")
 ```
 
+## Identifiable
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-core?label=monadic-identifiable-core)
+
+The `Identifiable` type is a universal design designed for identification types. 
+Used to add a typed identifier to type.
+
+```gradle
+implementation("io.github.pavelannin:monadic-identifiable-core")
+```
+
 ## LCE
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-lce-core?label=monadic-lce-core)
 
