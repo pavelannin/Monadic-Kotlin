@@ -1,9 +1,15 @@
-# 2024.11.13
-## :lce-core
+# NEXT
+## :either-core
+- added public modifiers for fields
 - added constructors for the Unit type
-## :lce-either
+- added lift's functions with suspend modifications
+
+# v2024.11.13
+## :lce-core (v0.2.0)
+- added constructors for the Unit type
+## :lce-either (v0.2.0)
 - fixed generic `Loading` on Nothing
-## :optional-core
+## :optional-core (v0.1.0)
 - added `Optional` monads
-## :optional-either
+## :optional-either (v0.1.0)
 - added converts `Optional` to `Either`

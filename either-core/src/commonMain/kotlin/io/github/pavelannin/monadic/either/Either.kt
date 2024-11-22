@@ -32,7 +32,14 @@ public sealed class Either<out Left, out Right> {
      * ###### RU:
      * Левое значение (для неправильных или альтернативных значений) монады [Either].
      */
-    public data class Left<T>(val left: T) : Either<T, Nothing>()
+    public data class Left<T>(public val left: T) : Either<T, Nothing>() {
+
+        public companion object {
+            public operator fun invoke(): Left<Unit> {
+                return Left(Unit)
+            }
+        }
+    }
 
     /**
      * ###### EN:
@@ -41,7 +48,14 @@ public sealed class Either<out Left, out Right> {
      * ###### RU:
      * Правое значение (для правильных значений) монады [Either].
      */
-    public data class Right<T>(val right: T) : Either<Nothing, T>()
+    public data class Right<T>(public val right: T) : Either<Nothing, T>() {
+
+        public companion object {
+            public operator fun invoke(): Right<Unit> {
+                return Right(Unit)
+            }
+        }
+    }
 
     /**
      * ###### EN:
@@ -382,6 +396,20 @@ public sealed class Either<out Left, out Right> {
 
         /**
          * ###### EN:
+         * Converts the transformation function [transform] into a [Either] structure that returns a polymorphic
+         * function that can be applied to all values of [Either].
+         *
+         * ###### RU:
+         * Возвращает полиморфную функцию преобразующую функцию [transform] в структуру [Either].
+         */
+        public inline fun <Left, RightIn, RightOut> suspendLift(
+            crossinline  transform: suspend (RightIn) -> RightOut,
+        ): suspend (Either<Left, RightIn>) -> Either<Left, RightOut> {
+            return { either -> either.map { transform(it) } }
+        }
+
+        /**
+         * ###### EN:
          * Converts the transformation function [leftTransform] and [rightTransform] into a [Either] structure that returns a polymorphic
          * function that can be applied to all values of [Either].
          *
@@ -395,6 +423,25 @@ public sealed class Either<out Left, out Right> {
             return { either -> either.bimap(leftTransform, rightTransform) }
         }
 
+        /**
+         * ###### EN:
+         * Converts the transformation function [leftTransform] and [rightTransform] into a [Either] structure that returns a polymorphic
+         * function that can be applied to all values of [Either].
+         *
+         * ###### RU:
+         * Возвращает полиморфную функцию преобразующую функцию [leftTransform] и [rightTransform] в структуру [Either].
+         */
+        public inline fun <LeftIn, LeftOut, RightIn, RightOut> suspendLift(
+            crossinline leftTransform: suspend (LeftIn) -> LeftOut,
+            crossinline rightTransform: suspend (RightIn) -> RightOut,
+        ): suspend (Either<LeftIn, RightIn>) -> Either<LeftOut, RightOut> {
+            return { either ->
+                either.bimap(
+                    leftTransform = { leftTransform(it) },
+                    rightTransform = { rightTransform(it) }
+                )
+            }
+        }
 
         /**
          * ###### EN:
