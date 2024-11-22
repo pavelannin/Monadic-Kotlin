@@ -51,7 +51,7 @@ implementation("io.github.pavelannin:monadic-function-core")
 ```
 
 ## Identifiable
-![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-core?label=monadic-identifiable-core)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-identifiable-core?label=monadic-identifiable-core)
 
 Тип `Identifiable` представляет собой универсальную конструкцию, предназначенную для идентификации типов. 
 Используется для добавления типизированного идентификатора к любому типу.
