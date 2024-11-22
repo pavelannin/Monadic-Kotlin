@@ -5,6 +5,8 @@
 - added lift's functions with suspend modifications
 ## :identifiable-core
 - first version
+## :lce-core
+- added public modifiers for fields
 
 # v2024.11.13
 ## :lce-core (v0.2.0)
