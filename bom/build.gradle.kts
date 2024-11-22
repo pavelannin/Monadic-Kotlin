@@ -11,9 +11,10 @@ javaPlatform {
 
 dependencies {
     constraints {
-        api("io.github.pavelannin:monadic-either-core:0.3.3")
+        api("io.github.pavelannin:monadic-either-core:0.4.0")
         api("io.github.pavelannin:monadic-function-core:0.2.0")
-        api("io.github.pavelannin:monadic-lce-core:0.2.0")
+        api("io.github.pavelannin:monadic-identifiable-core:0.1.0")
+        api("io.github.pavelannin:monadic-lce-core:0.3.0")
         api("io.github.pavelannin:monadic-lce-either:0.2.0")
         api("io.github.pavelannin:monadic-optional-core:0.1.0")
         api("io.github.pavelannin:monadic-optional-either:0.1.0")
@@ -24,7 +25,7 @@ mavenPublishing {
     val artifactId = "monadic-bom"
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.pavelannin", artifactId, "2024.11.13")
+    coordinates("io.github.pavelannin", artifactId, "2024.11.22")
 
     pom {
         name.set(artifactId)

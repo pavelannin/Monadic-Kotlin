@@ -1,11 +1,11 @@
-# NEXT
-## :either-core
+# v2024.11.22
+## :either-core (v0.4.0)
 - added public modifiers for fields
 - added constructors for the Unit type
 - added lift's functions with suspend modifications
-## :identifiable-core
+## :identifiable-core (v0.1.0)
 - first version
-## :lce-core
+## :lce-core (v0.3.0)
 - added public modifiers for fields
 
 # v2024.11.13

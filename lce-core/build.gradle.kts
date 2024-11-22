@@ -67,7 +67,7 @@ mavenPublishing {
     val artifactId = "monadic-lce-core"
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.pavelannin", artifactId, "0.2.0")
+    coordinates("io.github.pavelannin", artifactId, "0.3.0")
     pom {
         name.set(artifactId)
         description.set("Monadic is a distributed multiplatform Kotlin framework that provides a way to write code from functional programming.")
