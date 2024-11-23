@@ -29,6 +29,7 @@ rootProject.name = "Monadic"
 
 include(
     ":bom",
+    ":checkable-core",
     ":either-core",
     ":function-core",
     ":identifiable-core",

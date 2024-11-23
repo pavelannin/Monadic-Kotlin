@@ -29,6 +29,18 @@ It is recommended to use the `BOM` specification if you use more than one part o
 implementation(platform("io.github.pavelannin:monadic-bom:<version>"))
 ```
 
+## Checkable
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-checkable-core?label=monadic-checkable-core)
+
+The `Checkable` type is a functional construct used to extend the any type with states: checked (marked)
+or Unchecked.
+
+`Checkable` is convenient to use at the level of business logic and application view states.
+
+```gradle
+implementation("io.github.pavelannin:monadic-checkable-core")
+```
+
 ## Either
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-either-core?label=monadic-either-core)
 

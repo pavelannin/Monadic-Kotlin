@@ -29,6 +29,18 @@ Monadic решает эту проблему - подключайте тольк
 implementation(platform("io.github.pavelannin:monadic-bom:<version>"))
 ```
 
+## Checkable
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-checkable-core?label=monadic-checkable-core)
+
+Тип `Checkable` - это функциональная конструкция, используемая для расширения любого типа состояниями:
+проверенно (отмеченно) или непроверенно (неотмеченно).
+
+`Checkable` удабно использовать на уровне бизнеслогики и view стейтов приложений.
+
+```gradle
+implementation("io.github.pavelannin:monadic-checkable-core")
+```
+
 ## Either
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-either-core?label=monadic-either-core)
 

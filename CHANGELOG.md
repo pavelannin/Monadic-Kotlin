@@ -1,3 +1,7 @@
+# NEXT
+## :checkable-core
+- first version
+
 # v2024.11.22
 ## :either-core (v0.4.0)
 - added public modifiers for fields
