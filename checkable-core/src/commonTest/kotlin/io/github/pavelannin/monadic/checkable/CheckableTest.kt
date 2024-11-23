@@ -82,8 +82,8 @@ class CheckableTest {
     }
 
     @Test
-    fun checked() {
-        val f = fun(checkable: Checkable<*>) = checkable.checked()
+    fun toChecked() {
+        val f = fun(checkable: Checkable<*>) = checkable.toChecked()
 
         val checked = Checkable.Checked(Unit)
         val unchecked = Checkable.Unchecked(Unit)
@@ -93,8 +93,8 @@ class CheckableTest {
     }
 
     @Test
-    fun unchecked() {
-        val f = fun(checkable: Checkable<*>) = checkable.unchecked()
+    fun toUnchecked() {
+        val f = fun(checkable: Checkable<*>) = checkable.toUnchecked()
 
         val checked = Checkable.Checked(Unit)
         val unchecked = Checkable.Unchecked(Unit)

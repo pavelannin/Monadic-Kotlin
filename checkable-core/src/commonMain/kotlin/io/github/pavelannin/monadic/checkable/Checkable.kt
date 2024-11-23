@@ -238,11 +238,11 @@ public sealed class Checkable<out Value> {
      *
      * ###### Example:
      * ```
-     * Checked(Unit).checked() // Result: Checked(Unit)
-     * Unchecked(Unit).checked() // Result: Checked(Unit)
+     * Checked(Unit).toChecked() // Result: Checked(Unit)
+     * Unchecked(Unit).toChecked() // Result: Checked(Unit)
      * ```
      */
-    public fun checked(): Checked<Value> {
+    public fun toChecked(): Checked<Value> {
         return Checked(checkable)
     }
 
@@ -258,11 +258,11 @@ public sealed class Checkable<out Value> {
      *
      * ###### Example:
      * ```
-     * Checked(Unit).unchecked() // Result: Unchecked(Unit)
-     * Unchecked(Unit).unchecked() // Result: Unchecked(Unit)
+     * Checked(Unit).toUnchecked() // Result: Unchecked(Unit)
+     * Unchecked(Unit).toUnchecked() // Result: Unchecked(Unit)
      * ```
      */
-    public fun unchecked(): Unchecked<Value> {
+    public fun toUnchecked(): Unchecked<Value> {
         return Unchecked(checkable)
     }
 
