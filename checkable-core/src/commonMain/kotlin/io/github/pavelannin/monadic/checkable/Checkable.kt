@@ -191,7 +191,7 @@ public sealed class Checkable<out Value> {
 
     /**
      * ###### Signature:
-     * `Optional<Value>` -> `Result`
+     * `Checkable<Value>` -> `Result`
      *
      * ###### EN:
      * Transforms to the value [Result]. Applies the [checkedTransform] function if [Checked],
@@ -294,7 +294,7 @@ public sealed class Checkable<out Value> {
  * Transforms to `Checkable<Out>` by applying the [transform] function.
  *
  * ###### RU:
- * Трансформирует в `Optional<Out>`, применяя функцию [transform].
+ * Трансформирует в `Checkable<Out>`, применяя функцию [transform].
  *
  * ###### Example:
  * ```
