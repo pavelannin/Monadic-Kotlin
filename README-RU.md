@@ -111,3 +111,15 @@ implementation("io.github.pavelannin:monadic-optional-core")
 ```gradle
 implementation("io.github.pavelannin:monadic-optional-either")
 ```
+
+## Refreshable
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-refreshable-core?label=monadic-refreshable-core)
+
+The `Refreshable` type is a functional construct used to extend the any type with states:
+refreshing or refreshed.
+
+`Refreshable` is convenient to use at the level of business logic and application view states.
+
+```gradle
+implementation("io.github.pavelannin:monadic-refreshable-core")
+```

@@ -37,4 +37,5 @@ include(
     ":lce-either",
     ":optional-core",
     ":optional-either",
+    ":refreshable-core",
 )

@@ -111,3 +111,15 @@ A set of utilities that extend the capabilities of `Optional` and `Either'.
 ```gradle
 implementation("io.github.pavelannin:monadic-optional-either")
 ```
+
+## Refreshable
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-refreshable-core?label=monadic-refreshable-core)
+
+Тип `Refreshable` - это функциональная конструкция, используемая для расширения любого типа 
+состояниями: обновляется или обновленно.
+
+`Refreshable` удабно использовать на уровне бизнеслогики и view стейтов приложений.
+
+```gradle
+implementation("io.github.pavelannin:monadic-refreshable-core")
+```
