@@ -65,7 +65,7 @@ kotlin {
 }
 
 mavenPublishing {
-    val artifactId = "monadic-checkable-core"
+    val artifactId = "monadic-refreshable-core"
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
     coordinates("io.github.pavelannin", artifactId, "0.1.0")
