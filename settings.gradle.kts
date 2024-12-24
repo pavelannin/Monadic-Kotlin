@@ -12,6 +12,10 @@ pluginManagement {
     }
 }
 
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
+}
+
 @Suppress(names = ["UnstableApiUsage"])
 dependencyResolutionManagement {
     versionCatalogs {
@@ -38,4 +42,5 @@ include(
     ":optional-core",
     ":optional-either",
     ":refreshable-core",
+    ":result-core",
 )

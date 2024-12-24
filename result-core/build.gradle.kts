@@ -1,33 +1,55 @@
 import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
-    `java-platform`
+    alias(deps.plugins.android.library)
+    alias(deps.plugins.kotlin.multiplatform)
+    alias(deps.plugins.kotlin.serialization)
     alias(deps.plugins.maven.publish)
 }
 
-javaPlatform {
-    allowDependencies()
+android {
+    namespace = "io.github.pavelannin"
+    compileSdk = 34
 }
 
-dependencies {
-    constraints {
-        api("io.github.pavelannin:monadic-either-core:0.4.0")
-        api("io.github.pavelannin:monadic-function-core:0.2.0")
-        api("io.github.pavelannin:monadic-identifiable-core:0.1.0")
-        api("io.github.pavelannin:monadic-lce-core:0.3.0")
-        api("io.github.pavelannin:monadic-lce-either:0.2.0")
-        api("io.github.pavelannin:monadic-optional-core:0.1.0")
-        api("io.github.pavelannin:monadic-optional-either:0.1.0")
-        api("io.github.pavelannin:monadic-result-core:0.1.0")
+kotlin {
+    explicitApi()
+
+    jvmToolchain(8)
+
+    androidTarget()
+    jvm()
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+
+    sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.contracts.ExperimentalContracts")
+            }
+        }
+        commonMain.dependencies {
+            compileOnly(deps.kotlin.serialization.core)
+        }
+        commonTest.dependencies {
+            implementation(deps.kotlin.test)
+            implementation(deps.kotlin.serialization.json)
+        }
+    }
+
+    tasks.withType<Jar> {
+        from(rootDir.resolve("LICENSE")) {
+            into("META-INF")
+        }
     }
 }
 
 mavenPublishing {
-    val artifactId = "monadic-bom"
+    val artifactId = "monadic-result-core"
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.pavelannin", artifactId, "2024.12.23")
-
+    coordinates("io.github.pavelannin", artifactId, "0.1.0")
     pom {
         name.set(artifactId)
         description.set("Monadic is a distributed multiplatform Kotlin framework that provides a way to write code from functional programming.")
