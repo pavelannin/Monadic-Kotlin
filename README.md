@@ -115,11 +115,20 @@ implementation("io.github.pavelannin:monadic-optional-either")
 ## Refreshable
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-refreshable-core?label=monadic-refreshable-core)
 
-Тип `Refreshable` - это функциональная конструкция, используемая для расширения любого типа 
-состояниями: обновляется или обновленно.
+The `Refreshable` type is a functional construct used to extend the any type with states:
+refreshing or refreshed.
 
-`Refreshable` удабно использовать на уровне бизнеслогики и view стейтов приложений.
+`Refreshable` is convenient to use at the level of business logic and application view states.
 
 ```gradle
 implementation("io.github.pavelannin:monadic-refreshable-core")
+```
+
+## Result
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-result-core?label=monadic-result-core)
+
+The `Result` monad is a functional construct that represents success (`Result.OK`) or failure (`Result.Error`]).
+
+```gradle
+implementation("io.github.pavelannin:monadic-result-core")
 ```
