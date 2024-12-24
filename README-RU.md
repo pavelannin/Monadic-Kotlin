@@ -94,6 +94,15 @@ implementation("io.github.pavelannin:monadic-lce-core")
 implementation("io.github.pavelannin:monadic-lce-either")
 ```
 
+### LCE - Result (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-lce-result?label=monadic-lce-result)
+
+Набор утилит расширяющие возможности `LCE` и `Result`.
+
+```gradle
+implementation("io.github.pavelannin:monadic-lce-result")
+```
+
 ## Optional
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-core?label=monadic-optional-core)
 

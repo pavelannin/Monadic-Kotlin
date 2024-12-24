@@ -1,34 +1,42 @@
 import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
-    `java-platform`
+    alias(deps.plugins.kotlin.multiplatform)
     alias(deps.plugins.maven.publish)
 }
 
-javaPlatform {
-    allowDependencies()
-}
+kotlin {
+    explicitApi()
+    jvmToolchain(8)
 
-dependencies {
-    constraints {
-        api("io.github.pavelannin:monadic-either-core:0.4.0")
-        api("io.github.pavelannin:monadic-function-core:0.2.0")
-        api("io.github.pavelannin:monadic-identifiable-core:0.1.0")
-        api("io.github.pavelannin:monadic-lce-core:0.3.0")
-        api("io.github.pavelannin:monadic-lce-either:0.2.0")
-        api("io.github.pavelannin:monadic-lce-result:0.1.0")
-        api("io.github.pavelannin:monadic-optional-core:0.1.0")
-        api("io.github.pavelannin:monadic-optional-either:0.1.0")
-        api("io.github.pavelannin:monadic-result-core:0.1.0")
+    jvm()
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+
+    sourceSets {
+        commonMain.dependencies {
+            compileOnly(deps.kotlin.serialization.core)
+            api(project(":lce-core"))
+            api(project(":result-core"))
+        }
+        commonTest.dependencies {
+            implementation(deps.kotlin.test)
+        }
+    }
+
+    tasks.withType<Jar> {
+        from(rootDir.resolve("LICENSE")) {
+            into("META-INF")
+        }
     }
 }
 
 mavenPublishing {
-    val artifactId = "monadic-bom"
+    val artifactId = "monadic-lce-result"
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.pavelannin", artifactId, "2024.12.24")
-
+    coordinates("io.github.pavelannin", artifactId, "0.1.0")
     pom {
         name.set(artifactId)
         description.set("Monadic is a distributed multiplatform Kotlin framework that provides a way to write code from functional programming.")

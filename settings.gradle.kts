@@ -39,6 +39,7 @@ include(
     ":identifiable-core",
     ":lce-core",
     ":lce-either",
+    ":lce-result",
     ":optional-core",
     ":optional-either",
     ":refreshable-core",

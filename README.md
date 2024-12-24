@@ -88,10 +88,19 @@ implementation("io.github.pavelannin:monadic-lce-core")
 ### LCE - Either (Extensions)
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-lce-either?label=monadic-lce-either)
 
-A set of utilities that extend the capabilities of `LCE` and `Either'.
+A set of utilities that extend the capabilities of `LCE` and `Either`.
 
 ```gradle
 implementation("io.github.pavelannin:monadic-lce-either")
+```
+
+### LCE - Result (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-lce-result?label=monadic-lce-result)
+
+A set of utilities that extend the capabilities of `LCE` and `Result`.
+
+```gradle
+implementation("io.github.pavelannin:monadic-lce-result")
 ```
 
 ## Optional

@@ -4,6 +4,10 @@
 ## refreshable-core
 - first version
 
+# v2024.12.24
+## lce-result (v0.1.0)
+- first version
+
 # v2024.12.23
 ## result-core (v0.1.0)
 - first version
