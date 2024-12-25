@@ -1,6 +1,6 @@
 [versions]
-kotlin-language = "2.0.21"
-kotlin-coroutines = "1.9.0"
+kotlin-language = "2.1.0"
+kotlin-coroutines = "1.10.1"
 kotlin-serialization = "1.7.3"
 
 [libraries]
