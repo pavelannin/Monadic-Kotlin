@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Monadic"
-
+includeBuild("plugin-build")
 include(
     ":bom",
     ":checkable-core",
