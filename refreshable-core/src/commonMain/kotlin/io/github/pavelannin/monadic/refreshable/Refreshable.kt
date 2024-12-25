@@ -2,7 +2,6 @@ package io.github.pavelannin.monadic.refreshable
 
 import io.github.pavelannin.monadic.refreshable.serialization.RefreshableSerializer
 import kotlinx.serialization.Serializable
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -58,7 +57,6 @@ public sealed class Refreshable<out Value> {
      * Refreshed(Unit).isRefreshing // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isRefreshing(): Boolean {
         contract {
             returns(true) implies (this@Refreshable is Refreshing<Value>)
@@ -80,7 +78,6 @@ public sealed class Refreshable<out Value> {
      * Refreshable(Unit).onRefreshing { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onRefreshing(block: (Value) -> Unit): Refreshable<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isRefreshing()) block(refreshable)
@@ -100,7 +97,6 @@ public sealed class Refreshable<out Value> {
      * Refreshable(Unit).onRefreshed { print("Hello") } // Log: Hello
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onRefreshed(block: (Value) -> Unit): Refreshable<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (!this.isRefreshing()) block(refreshable)
@@ -123,7 +119,6 @@ public sealed class Refreshable<out Value> {
      * Refreshed(Unit).map { _, _ -> "foo" } // Result: Unchecked("foo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(transform: (isRefreshing: Boolean, Value) -> Out): Refreshable<Out> {
         contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
         val refreshing = isRefreshing()
@@ -155,7 +150,6 @@ public sealed class Refreshable<out Value> {
      * ) // Result: Refreshed("bar")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(
         refreshingTransform: (Value) -> Out,
         refreshedTransform: (Value) -> Out,
@@ -183,7 +177,6 @@ public sealed class Refreshable<out Value> {
      * Refreshed(Unit).fold { _, _ -> "foo" } // Result: "foo"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(transform: (isRefreshing: Boolean, Value) -> Result): Result {
         contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
         return transform(isRefreshing(), refreshable)
@@ -214,7 +207,6 @@ public sealed class Refreshable<out Value> {
      * ) // Result: "bar"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(
         refreshingTransform: (Value) -> Result,
         refreshedTransform: (Value) -> Result,
@@ -305,7 +297,6 @@ public sealed class Refreshable<out Value> {
  * Refreshed(Unit).flatMap { _, _ -> Refreshed("foo") } // Result: Refreshed("foo")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <In, Out> Refreshable<In>.flatMap(
     transform: (isChecked: Boolean, In) -> Refreshable<Out>,
 ): Refreshable<Out> {
@@ -338,7 +329,6 @@ public inline fun <In, Out> Refreshable<In>.flatMap(
  * ) // Result: Refreshing("bar")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <In, Out> Refreshable<In>.flatMap(
     refreshingTransform: (In) -> Refreshable<Out>,
     refreshedTransform: (In) -> Refreshable<Out>,

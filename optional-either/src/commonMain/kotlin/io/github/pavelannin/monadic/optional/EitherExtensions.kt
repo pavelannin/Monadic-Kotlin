@@ -1,7 +1,6 @@
 package io.github.pavelannin.monadic.optional
 
 import io.github.pavelannin.monadic.either.Either
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -45,7 +44,6 @@ public inline operator  fun <Left, Right> Either.Companion.invoke(
  * Optional.None.toEither { "foo" }  // Result: Either.Left("foo")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, Right> Optional<Right>.toEither(
     noneTransform: () -> Left,
 ): Either<Left, Right> {

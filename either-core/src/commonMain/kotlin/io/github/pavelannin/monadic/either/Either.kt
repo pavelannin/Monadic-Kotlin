@@ -1,7 +1,6 @@
 package io.github.pavelannin.monadic.either
 
 import kotlinx.serialization.Serializable
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -70,7 +69,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).isLeft // Result: true
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isLeft(): Boolean {
         contract {
             returns(true) implies (this@Either is Either.Left<Left>)
@@ -92,7 +90,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).isRight // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isRight(): Boolean {
         contract {
             returns(true) implies (this@Either is Either.Right<Right>)
@@ -148,7 +145,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).onLeft { print("Hello") } // Log: Hello
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onLeft(block: (Left) -> Unit): Either<Left, Right> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isLeft()) block(left)
@@ -168,7 +164,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).onRight { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onRight(block: (Right) -> Unit): Either<Left, Right> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isRight()) block(right)
@@ -191,7 +186,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).map { "foo" }  // Result: Left(1)
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(transform: (Right) -> Out): Either<Left, Out> {
         contract { callsInPlace(transform, InvocationKind.AT_MOST_ONCE) }
         return if (this.isRight()) Right(transform(right)) else this
@@ -213,7 +207,6 @@ public sealed class Either<out Left, out Right> {
      * Left(1).mapLeft { "foo" }  // Result: Left("foo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> mapLeft(transform: (Left) -> Out): Either<Out, Right> {
         contract { callsInPlace(transform, InvocationKind.AT_MOST_ONCE) }
         return if (this.isLeft()) Left(transform(left)) else this
@@ -244,7 +237,6 @@ public sealed class Either<out Left, out Right> {
      * ) // Result: Left("foo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <LeftOut, RightOut> bimap(
         leftTransform: (Left) -> LeftOut,
         rightTransform: (Right) -> RightOut,
@@ -281,7 +273,6 @@ public sealed class Either<out Left, out Right> {
      * ) // Result: "foo"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(
         leftTransform: (Left) -> Result,
         rightTransform: (Right) -> Result,
@@ -318,7 +309,6 @@ public sealed class Either<out Left, out Right> {
      * ) // Result: "bar"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> foldLeft(
         initial: Result,
         transform: (Left) -> Result,
@@ -352,7 +342,6 @@ public sealed class Either<out Left, out Right> {
      * ) // Result: "foo"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> foldRight(
         initial: Result,
         transform: (Right) -> Result,
@@ -479,7 +468,6 @@ public sealed class Either<out Left, out Right> {
  * Left(1).flatMap { Either.Left("zoo") } // Result: Left(1)
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, RightIn, RightOut> Either<Left, RightIn>.flatMap(
     transform: (RightIn) -> Either<Left, RightOut>,
 ): Either<Left, RightOut> {
@@ -509,7 +497,6 @@ public inline fun <Left, RightIn, RightOut> Either<Left, RightIn>.flatMap(
  * Left(1).flatMapLeft { Either.Left("zoo") } // Result: Left("zoo")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <LeftIn, LeftOut, Right> Either<LeftIn, Right>.flatMapLeft(
     transform: (LeftIn) -> Either<LeftOut, Right>,
 ): Either<LeftOut, Right> {
@@ -539,7 +526,6 @@ public inline fun <LeftIn, LeftOut, Right> Either<LeftIn, Right>.flatMapLeft(
  * Left("foo").zip(Left("foo")) { r1, r2 -> r1 + r2 } // Result: Left("foo")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, Right1, Right2, Result> Either<Left, Right1>.zip(
     either: Either<Left, Right2>,
     transform: (Right1, Right2) -> Result,
@@ -576,7 +562,6 @@ public fun <Left, Right1, Right2> Either<Left, Right1>.zip(
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, Right1, Right2, Right3, Result> Either<Left, Right1>.zip(
     either2: Either<Left, Right2>,
     either3: Either<Left, Right3>,
@@ -622,7 +607,6 @@ public fun <Left, Right1, Right2, Right3> Either<Left, Right1>.zip(
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, Right1, Right2, Right3, Right4, Result> Either<Left, Right1>.zip(
     either2: Either<Left, Right2>,
     either3: Either<Left, Right3>,
@@ -654,7 +638,6 @@ public inline fun <Left, Right1, Right2, Right3, Right4, Result> Either<Left, Ri
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Left, Right1, Right2, Right3, Right4, Right5, Result> Either<Left, Right1>.zip(
     either2: Either<Left, Right2>,
     either3: Either<Left, Right3>,

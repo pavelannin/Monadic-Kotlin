@@ -2,7 +2,6 @@ package io.github.pavelannin.monadic.checkable
 
 import io.github.pavelannin.monadic.checkable.serialization.CheckableSerializer
 import kotlinx.serialization.Serializable
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -58,7 +57,6 @@ public sealed class Checkable<out Value> {
      * Unchecked(Unit).isChecked // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isChecked(): Boolean {
         contract {
             returns(true) implies (this@Checkable is Checked<Value>)
@@ -80,7 +78,6 @@ public sealed class Checkable<out Value> {
      * Unchecked(Unit).onChecked { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onChecked(block: (Value) -> Unit): Checkable<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isChecked()) block(checkable)
@@ -100,7 +97,6 @@ public sealed class Checkable<out Value> {
      * Unchecked(Unit).onUnchecked { print("Hello") } // Log: Hello
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onUnchecked(block: (Value) -> Unit): Checkable<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (!this.isChecked()) block(checkable)
@@ -123,7 +119,6 @@ public sealed class Checkable<out Value> {
      * Unchecked(Unit).map { _, _ -> "foo" } // Result: Unchecked("foo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(transform: (isChecked: Boolean, Value) -> Out): Checkable<Out> {
         contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
         val checked = isChecked()
@@ -155,7 +150,6 @@ public sealed class Checkable<out Value> {
      * ) // Result: Unchecked("bar")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(
         checkedTransform: (Value) -> Out,
         uncheckedTransform: (Value) -> Out,
@@ -183,7 +177,6 @@ public sealed class Checkable<out Value> {
      * Unchecked(Unit).fold { _, _ -> "foo" } // Result: "foo"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(transform: (isChecked: Boolean, Value) -> Result): Result {
         contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
         return transform(isChecked(), checkable)
@@ -214,7 +207,6 @@ public sealed class Checkable<out Value> {
      * ) // Result: "bar"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(
         checkedTransform: (Value) -> Result,
         uncheckedTransform: (Value) -> Result,
@@ -305,7 +297,6 @@ public sealed class Checkable<out Value> {
  * Unchecked(Unit).flatMap { _, _ -> Unchecked("foo") } // Result: Unchecked("foo")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <In, Out> Checkable<In>.flatMap(
     transform: (isChecked: Boolean, In) -> Checkable<Out>,
 ): Checkable<Out> {
@@ -338,7 +329,6 @@ public inline fun <In, Out> Checkable<In>.flatMap(
  * ) // Result: Checked("bar")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <In, Out> Checkable<In>.flatMap(
     checkedTransform: (In) -> Checkable<Out>,
     uncheckedTransform: (In) -> Checkable<Out>,

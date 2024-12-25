@@ -10,7 +10,6 @@ import kotlin.OptIn
 import kotlin.Pair
 import kotlin.Triple
 import kotlin.Unit
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -74,7 +73,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).isLoading // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isLoading(): Boolean {
         contract { returns(true) implies (this@LCE is LCE.Loading<Loading>) }
         return this is LCE.Loading
@@ -94,7 +92,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).isContent // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isContent(): Boolean {
         contract { returns(true) implies (this@LCE is LCE.Content<Content>) }
         return this is LCE.Content
@@ -114,7 +111,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).isError // Result: true
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isError(): Boolean {
         contract { returns(true) implies (this@LCE is LCE.Error<Error>) }
         return this is LCE.Error
@@ -134,7 +130,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).isComplete // Result: true
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isComplete(): Boolean {
         contract { returns(false) implies (this@LCE is LCE.Loading<Loading>) }
         return isContent() || isError()
@@ -208,7 +203,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).onLoading { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onLoading(block: (Loading) -> Unit): LCE<Loading, Content, Error> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isLoading()) block(loading)
@@ -229,7 +223,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).onContent { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onContent(block: (Content) -> Unit): LCE<Loading, Content, Error> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isContent()) block(content)
@@ -250,7 +243,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).onError { print("Hello") } // Log: Hello
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onError(block: (Error) -> Unit): LCE<Loading, Content, Error> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isError()) block(error)
@@ -274,7 +266,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).mapLoading { "foo" }} // Result: Error(1)
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> mapLoading(
         transform: (Loading) -> Out,
     ): LCE<Out, Content, Error> {
@@ -299,7 +290,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).mapContent { "foo" }} // Result: Error(1)
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> mapContent(
         transform: (Content) -> Out,
     ): LCE<Loading, Out, Error> {
@@ -324,7 +314,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * Error(1).mapError { "foo" }} // Result: Error("foo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> mapError(
         transform: (Error) -> Out,
     ): LCE<Loading, Content, Out> {
@@ -365,7 +354,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * ) // Result: Error("zoo")
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <LoadingOut, ContentOut, ErrorOut> map(
         loadingTransform: (Loading) -> LoadingOut,
         contentTransform: (Content) -> ContentOut,
@@ -416,7 +404,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
      * ) // Result: "zoo"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(
         loadingTransform: (Loading) -> Result,
         contentTransform: (Content) -> Result,
@@ -457,7 +444,6 @@ public sealed class LCE<out Loading, out Content, out Error> {
  * Error(1).flatMapLoading { Loading("foo") } // Result: Error(1)
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <LoadingIn, LoadingOut, Content, Error> LCE<LoadingIn, Content, Error>.flatMapLoading(
     transform: (LoadingIn) -> LCE<LoadingOut, Content, Error>,
 ): LCE<LoadingOut, Content, Error> {
@@ -489,7 +475,6 @@ public inline fun <LoadingIn, LoadingOut, Content, Error> LCE<LoadingIn, Content
  * Error(1).flatMapContent { Content("foo") } // Result: Error(1)
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, ContentIn, ContentOut, Error> LCE<Loading, ContentIn, Error>.flatMapContent(
     transform: (ContentIn) -> LCE<Loading, ContentOut, Error>,
 ): LCE<Loading, ContentOut, Error> {
@@ -521,7 +506,6 @@ public inline fun <Loading, ContentIn, ContentOut, Error> LCE<Loading, ContentIn
  * Content(1).flatMapError { Content("foo") } // Result: Content(1)
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, Content, ErrorIn, ErrorOut> LCE<Loading, Content, ErrorIn>.flatMapError(
     transform: (ErrorIn) -> LCE<Loading, Content, ErrorOut>,
 ): LCE<Loading, Content, ErrorOut> {
@@ -550,7 +534,6 @@ public inline fun <Loading, Content, ErrorIn, ErrorOut> LCE<Loading, Content, Er
  * Content(1).zip(Error("bar")) { r1, r2 -> r1 + r2 } // Result: Error("bar")
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, Content1, Content2, Error, Result> LCE<Loading, Content1, Error>.zip(
     lce: LCE<Loading, Content2, Error>,
     transform: (Content1, Content2) -> Result,
@@ -592,7 +575,6 @@ public fun <Loading, Content1, Content2, Error> LCE<Loading, Content1, Error>.zi
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, Content1, Content2, Content3, Error, Result> LCE<Loading, Content1, Error>.zip(
     lce2: LCE<Loading, Content2, Error>,
     lce3: LCE<Loading, Content3, Error>,
@@ -639,7 +621,6 @@ public fun <Loading, Content1, Content2, Content3, Error> LCE<Loading, Content1,
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, Content1, Content2, Content3, Content4, Error, Result> LCE<Loading, Content1, Error>.zip(
     lce2: LCE<Loading, Content2, Error>,
     lce3: LCE<Loading, Content3, Error>,
@@ -671,7 +652,6 @@ public inline fun <Loading, Content1, Content2, Content3, Content4, Error, Resul
  *
  * @see zip
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Loading, Content1, Content2, Content3, Content4, Content5, Error, Result> LCE<Loading, Content1, Error>.zip(
     lce2: LCE<Loading, Content2, Error>,
     lce3: LCE<Loading, Content3, Error>,

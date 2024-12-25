@@ -4,7 +4,6 @@ import io.github.pavelannin.monadic.optional.Optional.None
 import io.github.pavelannin.monadic.optional.Optional.Some
 import io.github.pavelannin.monadic.optional.serialization.OptionalSerializer
 import kotlinx.serialization.Serializable
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
@@ -39,7 +38,6 @@ public sealed class Optional<out Value> {
      * None.isSome // Result: false
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isSome(): Boolean {
         contract {
             returns(true) implies (this@Optional is Some<Value>)
@@ -61,7 +59,6 @@ public sealed class Optional<out Value> {
      * None.isSome // Result: true
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public fun isNone(): Boolean {
         contract {
             returns(true) implies (this@Optional is None)
@@ -100,7 +97,6 @@ public sealed class Optional<out Value> {
      * None.onSome { print("Hello") }
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onSome(block: (Value) -> Unit): Optional<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isSome()) block(some)
@@ -120,7 +116,6 @@ public sealed class Optional<out Value> {
      * None.onNone { print("Hello") } // Log: Hello
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun onNone(block: () -> Unit): Optional<Value> {
         contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
         if (this.isNone()) block()
@@ -143,7 +138,6 @@ public sealed class Optional<out Value> {
      * None.map { "foo" }  // Result: None
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Out> map(transform: (Value) -> Out): Optional<Out> {
         contract { callsInPlace(transform, InvocationKind.AT_MOST_ONCE) }
         return if (this.isSome()) Some(transform(some)) else this
@@ -165,7 +159,6 @@ public sealed class Optional<out Value> {
      * None.fold { "foo" } // Result: null
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(transform: (Value) -> Result): Result? {
         contract { callsInPlace(transform, InvocationKind.AT_MOST_ONCE) }
         return if (this.isSome()) transform(some) else null
@@ -196,7 +189,6 @@ public sealed class Optional<out Value> {
      * ) // Result: "bar"
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun <Result> fold(
         someTransform: (Value) -> Result,
         noneTransform: () -> Result,
@@ -223,7 +215,6 @@ public sealed class Optional<out Value> {
      * None.filter { false } // Result: None
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun filter(predicate: (Value) -> Boolean): Optional<Value> {
         contract { callsInPlace(predicate, InvocationKind.AT_MOST_ONCE) }
         return flatMap { value -> if (predicate(value)) Some(value) else None }
@@ -244,7 +235,6 @@ public sealed class Optional<out Value> {
      * None.filter { false } // Result: None
      * ```
      */
-    @OptIn(ExperimentalContracts::class)
     public inline fun filterNot(predicate: (Value) -> Boolean): Optional<Value> {
         contract { callsInPlace(predicate, InvocationKind.AT_MOST_ONCE) }
         return flatMap { value-> if (!predicate(value)) Some(value) else None }
@@ -327,7 +317,6 @@ public sealed class Optional<out Value> {
  * None.flatMap { Optional.None } // Result: None
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <In, Out> Optional<In>.flatMap(transform: (In) -> Optional<Out>): Optional<Out> {
     contract { callsInPlace(transform, InvocationKind.AT_MOST_ONCE) }
     return when (this) {
@@ -355,7 +344,6 @@ public inline fun <In, Out> Optional<In>.flatMap(transform: (In) -> Optional<Out
  * None.zip(None) { r1, r2 -> r1 + r2 } // Result: None
  * ```
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Value1, Value2, Result> Optional<Value1>.zip(
     optional: Optional<Value2>,
     transform: (Value1, Value2) -> Result,
@@ -388,7 +376,6 @@ public fun <Value1, Value2> Optional<Value1>.zip(
  * ###### RU:
  * Объединяет three [Optional.Some] в одно значение, применяя функцию [transform].
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Value1, Value2, Value3, Result> Optional<Value1>.zip(
     optional2: Optional<Value2>,
     optional3: Optional<Value3>,
@@ -429,7 +416,6 @@ public fun <Value1, Value2, Value3> Optional<Value1>.zip(
  * ###### RU:
  * Объединяет four [Optional.Some] в одно значение, применяя функцию [transform].
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Value1, Value2, Value3, Value4, Result> Optional<Value1>.zip(
     optional2: Optional<Value2>,
     optional3: Optional<Value3>,
@@ -459,7 +445,6 @@ public inline fun <Value1, Value2, Value3, Value4, Result> Optional<Value1>.zip(
  * ###### RU:
  * Объединяет five [Optional.Some] в одно значение, применяя функцию [transform].
  */
-@OptIn(ExperimentalContracts::class)
 public inline fun <Value1, Value2, Value3, Value4, Value5, Result> Optional<Value1>.zip(
     optional2: Optional<Value2>,
     optional3: Optional<Value3>,
