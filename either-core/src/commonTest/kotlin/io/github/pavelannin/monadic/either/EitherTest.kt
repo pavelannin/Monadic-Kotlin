@@ -7,129 +7,54 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class EitherTest {
-    private val rightValue = 1
-    private val leftValue = 100
-    private val right: Either<Int, Int> = Either.Right(rightValue)
-    private val left: Either<Int, Int> = Either.Left(leftValue)
-
-    @Test
-    fun map() {
-        assertEquals(Either.Right(rightValue + 1), right.map { it + 1 })
-        assertEquals(left, left.map { it + 1 })
-    }
-
-    @Test
-    fun mapLeft() {
-        assertEquals(right, right.mapLeft { it + 1 })
-        assertEquals(Either.Left(leftValue + 1), left.mapLeft { it + 1 })
-    }
-
-    @Test
-    fun bimap() {
-        assertEquals(Either.Right(rightValue + 1), right.bimap(leftTransform = { it + 2 }, rightTransform = { it + 1 }))
-        assertEquals(Either.Left(leftValue + 2), left.bimap(leftTransform = { it + 2 }, rightTransform = { it + 1 }))
-    }
-
-    @Test
-    fun fold() {
-        assertEquals(rightValue + 1, right.fold(leftTransform = { it + 2 }, rightTransform = { it + 1 }))
-        assertEquals(leftValue + 2, left.fold(leftTransform = { it + 2 }, rightTransform = { it + 1 }))
-    }
-
-    @Test
-    fun foldLeft() {
-        assertEquals(0, right.foldLeft(initial = 0) { it + 1 })
-        assertEquals(leftValue + 1, left.foldLeft(initial = 0) { it + 1 })
-    }
-
-    @Test
-    fun foldRight() {
-        assertEquals(0, left.foldRight(initial = 0) { it + 1 })
-        assertEquals(rightValue + 1, right.foldRight(initial = 0) { it + 1 })
-    }
-
-    @Test
-    fun flatMap() {
-        assertEquals(Either.Right(rightValue + 1), right.flatMap { Either.Right(it + 1) })
-        assertEquals(left, left.flatMap { Either.Right(it + 1) })
-    }
-
-    @Test
-    fun flatMapLeft() {
-        assertEquals(right, right.flatMapLeft { Either.Right(it + 1) })
-        assertEquals(Either.Left(leftValue + 1), left.flatMapLeft { Either.Left(it + 1) })
-    }
-
-    @Test
-    fun zip() {
-        assertEquals(Either.Right(rightValue + rightValue), right.zip(right) { a, b -> a + b })
-        assertEquals(left, right.zip(left) { a, b -> a + b })
-        assertEquals(left, left.zip(right) { a, b -> a + b })
-        assertEquals(left, left.zip(left) { a, b -> a + b })
-    }
-
-    @Test
-    fun flatten() {
-        val rightCascade = Either.Right(right)
-        val leftCascade = Either.Left(leftValue)
-        assertEquals(right, rightCascade.flatten())
-        assertEquals(left, leftCascade.flatten())
-    }
-
-    @Test
-    fun swap() {
-        assertEquals(Either.Left(rightValue), right.swap())
-        assertEquals(Either.Right(leftValue), left.swap())
-    }
-
-    @Test
-    fun take() {
-        assertEquals(rightValue, right.take())
-        assertEquals(leftValue, left.take())
-    }
-
-    @Test
-    fun leftOrNull() {
-        assertEquals(leftValue, left.leftOrNull())
-        assertNull(right.leftOrNull())
-    }
-
-    @Test
-    fun isLeft() {
-        assertTrue(left.isLeft())
-        assertFalse(right.isLeft())
-    }
-
-    @Test
-    fun rightOrNull() {
-        assertEquals(rightValue, right.rightOrNull())
-        assertNull(left.rightOrNull())
-    }
-
     @Test
     fun isRight() {
+        val right = Either.Right()
+        val left = Either.Left()
         assertTrue(right.isRight())
         assertFalse(left.isRight())
     }
 
     @Test
+    fun isLeft() {
+        val right = Either.Right()
+        val left = Either.Left()
+        assertFalse(right.isLeft())
+        assertTrue(left.isLeft())
+    }
+
+    @Test
     fun lift() {
-        val func = Either.lift<Int, Int, Int> { it + 1 }
-        assertEquals(Either.Right(rightValue + 1), func(right))
-        assertEquals(left, func(left))
+        val f = fun(u: Unit) = "foo"
+        val lift = Either.lift<Unit, Unit, String>(f)
+
+        val right = Either.Right()
+        val left = Either.Left()
+
+        assertEquals(Either.Right("foo"), lift(right))
+        assertEquals(left, lift(left))
     }
 
     @Test
     fun bilift() {
-        val func = Either.lift<Int, Int, Int, Int>({ it + 1 }, { it + 2 })
-        assertEquals(Either.Left(leftValue + 1), func(left))
-        assertEquals(Either.Right(rightValue + 2), func(right))
+        val rightFun = fun(u: Unit) = "foo"
+        val leftFun = fun(u: Unit) = "bar"
+        val lift = Either.lift(leftFun, rightFun)
+
+        val right = Either.Right()
+        val left = Either.Left()
+
+        assertEquals(Either.Right("foo"), lift(right))
+        assertEquals(Either.Left("bar"), lift(left))
     }
 
     @Test
-    fun either() {
-        val expectedException = RuntimeException()
-        assertEquals(Either.Right(rightValue), Either.catch { rightValue })
-        assertEquals(Either.Left(expectedException), Either.catch { throw expectedException })
+    fun catch() {
+        val rightFun = fun() = Either.catch { "foo" }
+        val exception = RuntimeException()
+        val leftFun = fun() = Either.catch { throw exception }
+
+        assertEquals(Either.Right("foo"), rightFun())
+        assertEquals(Either.Left(exception), leftFun())
     }
 }

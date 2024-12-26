@@ -29,22 +29,19 @@ public class EitherSerializer<Left, Right>(
             encodeStringElement(
                 descriptor = descriptor,
                 index = 0,
-                value = when (value) {
-                    is Either.Left -> leftType
-                    is Either.Right -> rightType
-                }
+                value = if (value.isLeft()) leftType else rightType,
             )
             encodeNullableSerializableElement(
                 descriptor = descriptor,
                 index = 1,
                 serializer = leftSerializer,
-                value = if (value is Either.Left) value.left else null,
+                value = if (value.isLeft()) value.left else null,
             )
             encodeNullableSerializableElement(
                 descriptor = descriptor,
                 index = 2,
                 serializer = rightSerializer,
-                value = if (value is Either.Right) value.right else null,
+                value = if (value.isRight()) value.right else null,
             )
         }
     }
