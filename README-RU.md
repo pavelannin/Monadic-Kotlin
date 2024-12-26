@@ -2,6 +2,10 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+![badge-jvm](http://img.shields.io/badge/platform-jvm-DB413D.svg?style=flat)
+![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
+![badge-ios](http://img.shields.io/badge/platform-ios-lightgray?style=flat)
+
 # Что такое Monadic
 Monadic - это распределенный Kotlin multiplatform библиотека, который предоставляет восможность использование 
 функционального программирования в Kotlin.
