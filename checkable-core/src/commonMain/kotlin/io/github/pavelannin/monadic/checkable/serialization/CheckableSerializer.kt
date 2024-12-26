@@ -1,6 +1,7 @@
 package io.github.pavelannin.monadic.checkable.serialization
 
 import io.github.pavelannin.monadic.checkable.Checkable
+import io.github.pavelannin.monadic.checkable.isChecked
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
