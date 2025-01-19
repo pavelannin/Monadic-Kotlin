@@ -3,6 +3,7 @@ package io.github.pavelannin.monadic.checkable
 import io.github.pavelannin.monadic.checkable.serialization.CheckableSerializer
 import kotlinx.serialization.Serializable
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -24,6 +25,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(CheckableSerializer::class)
+@ObjCName("MonadicCheckable")
 public sealed interface Checkable<out Value> {
     public val checkable: Value
 

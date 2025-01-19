@@ -5,6 +5,7 @@ import kotlin.Boolean
 import kotlin.Nothing
 import kotlin.Unit
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -30,6 +31,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(LCESerializer::class)
+@ObjCName("MonadicLCE")
 public sealed interface LCE<out Loading, out Content, out Error> {
     public data class Loading<out T>(public val loading: T) : LCE<T, Nothing, Nothing> {
         public companion object {

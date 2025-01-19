@@ -1,6 +1,7 @@
 package io.github.pavelannin.monadic.identifiable
 
 import kotlinx.serialization.Serializable
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -17,6 +18,7 @@ import kotlinx.serialization.Serializable
  * ```
  */
 @Serializable
+@ObjCName("MonadicIdentifiable")
 public data class Identifiable<Id, Wrapped>(
     public val id: Id,
     public val value: Wrapped,

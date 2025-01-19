@@ -4,6 +4,7 @@ import io.github.pavelannin.monadic.either.Either.Left
 import io.github.pavelannin.monadic.either.Either.Right
 import kotlinx.serialization.Serializable
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -24,6 +25,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(EitherSerializer::class)
+@ObjCName("MonadicEither")
 public sealed interface Either<out Left, out Right> {
     /**
      * ###### EN:

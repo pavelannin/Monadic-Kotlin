@@ -2,6 +2,7 @@ package io.github.pavelannin.monadic.result
 
 import kotlinx.serialization.Serializable
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -17,6 +18,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(ResultSerializer::class)
+@ObjCName("MonadicResult")
 public sealed interface Result<out Ok, out Error> {
     public data class Ok<out T>(public val ok: T) : Result<T, Nothing> {
         public companion object {

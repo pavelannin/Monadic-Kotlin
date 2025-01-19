@@ -4,6 +4,7 @@ import io.github.pavelannin.monadic.refreshable.serialization.RefreshableSeriali
 import kotlinx.serialization.Serializable
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -25,6 +26,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(RefreshableSerializer::class)
+@ObjCName("MonadicRefreshable")
 public sealed interface Refreshable<out Value> {
     public val refreshable: Value
 

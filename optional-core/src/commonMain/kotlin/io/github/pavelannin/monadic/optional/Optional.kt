@@ -3,6 +3,7 @@ package io.github.pavelannin.monadic.optional
 import io.github.pavelannin.monadic.optional.serialization.OptionalSerializer
 import kotlinx.serialization.Serializable
 import kotlin.contracts.contract
+import kotlin.native.ObjCName
 
 /**
  * ###### EN:
@@ -18,6 +19,7 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(OptionalSerializer::class)
+@ObjCName("MonadicOptional")
 public sealed interface Optional<out Value> {
     public data class Some<out T>(public val some: T) : Optional<T> {
         public companion object {
