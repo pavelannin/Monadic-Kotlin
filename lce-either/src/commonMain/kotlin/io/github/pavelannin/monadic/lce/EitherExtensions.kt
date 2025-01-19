@@ -1,6 +1,7 @@
 package io.github.pavelannin.monadic.lce
 
 import io.github.pavelannin.monadic.either.Either
+import io.github.pavelannin.monadic.either.fold
 
 /**
  * ###### EN:
