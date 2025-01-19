@@ -3,7 +3,7 @@ package io.github.pavelannin.monadic.refreshable
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ConvertTest {
+class ConverterTest {
     @Test
     fun toRefreshing() {
         val f = fun(refreshable: Refreshable<*>) = refreshable.toRefreshing()
