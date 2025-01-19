@@ -3,7 +3,6 @@ plugins {
     alias(deps.plugins.kotlin.serialization)
     id("io.github.pavelannin.multiplatform")
     id("io.github.pavelannin.publish")
-    alias(deps.plugins.maven.publish)
 }
 
 kotlin {

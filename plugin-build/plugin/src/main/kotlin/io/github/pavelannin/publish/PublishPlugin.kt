@@ -12,12 +12,17 @@ import org.gradle.kotlin.dsl.withType
 class PublishPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         val ext = target.extensions.create<PublishExtension>("publish")
+
+        if (!target.plugins.hasPlugin("com.vanniktech.maven.publish")) {
+            target.plugins.apply("com.vanniktech.maven.publish")
+        }
+
         target.afterEvaluate {
             plugins.withType<MavenPublishBasePlugin> {
                 extensions.configure<MavenPublishBaseExtension> {
                     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
                     signAllPublications()
-                    coordinates("io.github.pavelannin", ext.version)
+                    coordinates("io.github.pavelannin", ext.artifactId, ext.version)
                     pom {
                         name.set(ext.artifactId)
                         description.set("Monadic is a distributed multiplatform Kotlin framework that provides a way to write code from functional programming.")
