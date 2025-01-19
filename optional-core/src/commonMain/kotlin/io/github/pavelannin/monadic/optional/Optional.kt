@@ -18,13 +18,13 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(OptionalSerializer::class)
-public sealed class Optional<out Value> {
-    public data class Some<out T>(public val some: T) : Optional<T>() {
+public sealed interface Optional<out Value> {
+    public data class Some<out T>(public val some: T) : Optional<T> {
         public companion object {
             public operator fun invoke(): Some<Unit> = Some(Unit)
         }
     }
-    public data object None : Optional<Nothing>()
+    public data object None : Optional<Nothing>
 
     public companion object {
         /**

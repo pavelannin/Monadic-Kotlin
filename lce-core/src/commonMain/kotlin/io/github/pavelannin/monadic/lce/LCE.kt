@@ -3,10 +3,7 @@ package io.github.pavelannin.monadic.lce
 import kotlinx.serialization.Serializable
 import kotlin.Boolean
 import kotlin.Nothing
-import kotlin.Pair
-import kotlin.Triple
 import kotlin.Unit
-import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 /**
@@ -33,20 +30,20 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(LCESerializer::class)
-public sealed class LCE<out Loading, out Content, out Error> {
-    public data class Loading<T>(public val loading: T) : LCE<T, Nothing, Nothing>() {
+public sealed interface LCE<out Loading, out Content, out Error> {
+    public data class Loading<out T>(public val loading: T) : LCE<T, Nothing, Nothing> {
         public companion object {
             public operator fun invoke(): Loading<Unit> = Loading(Unit)
         }
     }
 
-    public data class Content<T>(public val content: T) : LCE<Nothing, T, Nothing>() {
+    public data class Content<out T>(public val content: T) : LCE<Nothing, T, Nothing> {
         public companion object {
             public operator fun invoke(): Content<Unit> = Content(Unit)
         }
     }
 
-    public data class Error<T>(public val error: T) : LCE<Nothing, Nothing, T>() {
+    public data class Error<out T>(public val error: T) : LCE<Nothing, Nothing, T> {
         public companion object {
             public operator fun invoke(): Error<Unit> = Error(Unit)
         }

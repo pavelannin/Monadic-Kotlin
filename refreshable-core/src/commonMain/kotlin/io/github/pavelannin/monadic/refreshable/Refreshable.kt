@@ -25,10 +25,10 @@ import kotlin.contracts.contract
  * ```
  */
 @Serializable(RefreshableSerializer::class)
-public sealed class Refreshable<out Value> {
-    public abstract val refreshable: Value
+public sealed interface Refreshable<out Value> {
+    public val refreshable: Value
 
-    public data class Refreshing<out T>(public override val refreshable: T) : Refreshable<T>() {
+    public data class Refreshing<out T>(public override val refreshable: T) : Refreshable<T> {
         public companion object {
             public operator fun invoke(): Refreshing<Unit> {
                 return Refreshing(Unit)
@@ -36,7 +36,7 @@ public sealed class Refreshable<out Value> {
         }
     }
 
-    public data class Refreshed<out T>(public override val refreshable: T) : Refreshable<T>() {
+    public data class Refreshed<out T>(public override val refreshable: T) : Refreshable<T> {
         public companion object {
             public operator fun invoke(): Refreshed<Unit> {
                 return Refreshed(Unit)

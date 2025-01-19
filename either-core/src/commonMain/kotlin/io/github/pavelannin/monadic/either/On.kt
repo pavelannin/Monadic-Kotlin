@@ -1,7 +1,5 @@
 package io.github.pavelannin.monadic.either
 
-import io.github.pavelannin.monadic.either.Either.Left
-import io.github.pavelannin.monadic.either.Either.Right
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
