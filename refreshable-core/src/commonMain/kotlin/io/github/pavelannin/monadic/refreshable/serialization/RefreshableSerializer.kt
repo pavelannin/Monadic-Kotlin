@@ -1,6 +1,7 @@
 package io.github.pavelannin.monadic.refreshable.serialization
 
 import io.github.pavelannin.monadic.refreshable.Refreshable
+import io.github.pavelannin.monadic.refreshable.isRefreshing
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
