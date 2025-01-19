@@ -1,6 +1,7 @@
 package io.github.pavelannin.monadic.optional.serialization
 
 import io.github.pavelannin.monadic.optional.Optional
+import io.github.pavelannin.monadic.optional.getOrNull
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
