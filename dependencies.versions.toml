@@ -1,7 +1,9 @@
 [versions]
-kotlin-language = "2.1.0"
-kotlin-coroutines = "1.10.1"
-kotlin-serialization = "1.8.0"
+kotlin-language = "2.2.10"
+kotlin-coroutines = "1.10.2"
+kotlin-serialization = "1.9.0"
+kotlin-benchmark = "0.4.14"
+maven-publish = "0.30.0"
 
 [libraries]
 kotlin-std-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin-language" }
@@ -9,9 +11,11 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlin-serialization" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
-plugin-maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.30.0" }
+
+plugin-maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 plugin-kotlin-multiplatform = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin-language" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-language" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-language" }
+kotlin-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "kotlin-benchmark" }

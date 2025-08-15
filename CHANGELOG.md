@@ -1,3 +1,8 @@
+# Next
+- kotlin version 2.2.10
+- coroutines version 1.10.2
+- serialization version 1.9.0
+
 # 2025.01.19
 ## checkable-core (v0.1.0)
 - first version
