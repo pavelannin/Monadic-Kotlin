@@ -1,12 +1,5 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -24,7 +17,6 @@ dependencyResolutionManagement {
         }
     }
     repositories {
-        google()
         mavenCentral()
     }
 }
@@ -36,7 +28,6 @@ include(
     ":checkable-core",
     ":either-core",
     ":function-core",
-    ":identifiable-core",
     ":lce-core",
     ":lce-either",
     ":lce-result",
