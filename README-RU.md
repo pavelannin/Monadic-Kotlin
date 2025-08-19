@@ -66,7 +66,7 @@ implementation("io.github.pavelannin:monadic-either-core")
 implementation("io.github.pavelannin:monadic-function-core")
 ```
 
-## Identifiable
+## Identifiable (DEPRECATED)
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-identifiable-core?label=monadic-identifiable-core)
 
 Тип `Identifiable` представляет собой универсальную конструкцию, предназначенную для идентификации типов. 
@@ -123,6 +123,15 @@ implementation("io.github.pavelannin:monadic-optional-core")
 
 ```gradle
 implementation("io.github.pavelannin:monadic-optional-either")
+```
+
+### Optional - Result (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-either?label=monadic-optional-either)
+
+Набор утилит расширяющие возможности `Optional` и `Result`.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-result")
 ```
 
 ## Refreshable

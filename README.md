@@ -66,7 +66,7 @@ Utilities for functions in a functional style: composition, currying, etc.
 implementation("io.github.pavelannin:monadic-function-core")
 ```
 
-## Identifiable
+## Identifiable (DEPRECATED)
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-identifiable-core?label=monadic-identifiable-core)
 
 The `Identifiable` type is a universal design designed for identification types. 
@@ -123,6 +123,15 @@ A set of utilities that extend the capabilities of `Optional` and `Either'.
 
 ```gradle
 implementation("io.github.pavelannin:monadic-optional-either")
+```
+
+### Optional - Result (Extensions)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.pavelannin/monadic-optional-either?label=monadic-optional-either)
+
+A set of utilities that extend the capabilities of `Optional` and `Result'.
+
+```gradle
+implementation("io.github.pavelannin:monadic-optional-result")
 ```
 
 ## Refreshable
