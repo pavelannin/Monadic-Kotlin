@@ -1,7 +1,21 @@
-# Next
+# 1.0.0 (2025-08-19)
 - kotlin version 2.2.10
 - coroutines version 1.10.2
 - serialization version 1.9.0
+## Breaking changes
+- identifiable-core marked as deprecated
+## Updated 
+- checkable-core (v1.0.0)
+- either-core (v1.0.0)
+- function-core (v1.0.0)
+- lce-core (v1.0.0)
+- lce-either (v1.0.0)
+- lce-result (v1.0.0)
+- optional-core (v1.0.0)
+- optional-either (v1.0.0)
+- optional-result (v1.0.0)
+- refreshable-core (v1.0.0)
+- result-core (v1.0.0)
 
 # 2025.01.19
 ## checkable-core (v0.1.0)
