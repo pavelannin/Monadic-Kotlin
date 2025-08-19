@@ -6,7 +6,6 @@ kotlin-benchmark = "0.4.14"
 maven-publish = "0.30.0"
 
 [libraries]
-kotlin-std-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin-language" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-language" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlin-serialization" }

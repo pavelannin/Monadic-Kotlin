@@ -8,7 +8,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            compileOnly(deps.kotlin.serialization.core)
+            api(deps.kotlin.serialization.core)
         }
         commonTest.dependencies {
             implementation(deps.kotlin.test)

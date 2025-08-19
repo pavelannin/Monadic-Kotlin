@@ -7,9 +7,9 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            compileOnly(deps.kotlin.serialization.core)
-            api(project(":lce-core"))
-            api(project(":result-core"))
+            api(deps.kotlin.serialization.core)
+            api(projects.lceCore)
+            api(projects.resultCore)
         }
         commonTest.dependencies {
             implementation(deps.kotlin.test)

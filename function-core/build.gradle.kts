@@ -6,9 +6,6 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            api(deps.kotlin.std.common)
-        }
         commonTest.dependencies {
             implementation(deps.kotlin.test)
             implementation(deps.kotlin.coroutines.test)
