@@ -48,5 +48,5 @@ public inline fun <Ok, Error> Optional<Ok>.toResult(
     noneTransform: () -> Error,
 ): Result<Ok, Error> {
     contract { callsInPlace(noneTransform, InvocationKind.AT_MOST_ONCE) }
-    return Result(optional = this, leftInitial = noneTransform)
+    return Result(optional = this, errorInitial = noneTransform)
 }
