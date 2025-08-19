@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         mavenCentral()
@@ -33,6 +35,7 @@ include(
     ":lce-result",
     ":optional-core",
     ":optional-either",
+    ":optional-result",
     ":refreshable-core",
     ":result-core",
 )
