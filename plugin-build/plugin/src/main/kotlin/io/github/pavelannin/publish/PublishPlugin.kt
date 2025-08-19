@@ -4,7 +4,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
@@ -20,7 +19,7 @@ class PublishPlugin : Plugin<Project> {
         target.afterEvaluate {
             plugins.withType<MavenPublishBasePlugin> {
                 extensions.configure<MavenPublishBaseExtension> {
-                    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
+                    publishToMavenCentral()
                     signAllPublications()
                     coordinates("io.github.pavelannin", ext.artifactId, ext.version)
                     pom {

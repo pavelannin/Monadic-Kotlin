@@ -3,7 +3,7 @@ kotlin-language = "2.2.10"
 kotlin-coroutines = "1.10.2"
 kotlin-serialization = "1.9.0"
 kotlin-benchmark = "0.4.14"
-maven-publish = "0.30.0"
+maven-publish = "0.34.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-language" }
